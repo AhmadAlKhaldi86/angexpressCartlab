@@ -1,0 +1,50 @@
+<ul>
+  <p>Get All Products</p>
+  <li *ngFor="let post of posts">ID: {{post.id}}, ProductName: {{post.product}},ProductPrice: {{post.price}}</li>
+</ul>
+
+
+
+<div>
+  <p>Get Product by ID</p>
+  <input type="text" name="id" #di><br>
+  <button (click)="getProductById(di.value)">submit</button><br>
+  <div *ngFor="let id of prodId" >{{prodId[0].product}}</div>
+</div>
+
+
+
+<br>
+<br>
+<form>
+  <label>POST new Product </label><br>
+ <label>ID</label><br>
+ <input id="id" type="text" name="id" #id><br>
+ <label>Price</label><br>
+ <input id="price" type="text" name="price" #price><br>
+ <label>Product</label><br>
+ <input id="product" type="text" name="product" #product><br>
+ <label>Quantity</label><br>
+ <input id="quantity" type="text" name="quantity" #quantity><br>
+ <button (click)="postProduct(id.value, price.value, product.value, quantity.value)">submit</button><br>
+</form>
+
+
+<div>
+  <p>Delete Product by ID</p>
+  <input type="text" name="id" #dp><br>
+  <button (click)="delProductById(dp.value)">submit</button><br>
+</div>
+
+
+<div>
+  <p>Update Product quantity</p>
+  <p>Enter Price</p>
+  <input type="text" name="id" #up><br>
+  <p>Enter ID to Update</p>
+  <input type="text" name="id" #ui><br>
+  <button (click)="updateProductById(up.value,ui.value)">submit</button><br>
+</div>
+
+
+
