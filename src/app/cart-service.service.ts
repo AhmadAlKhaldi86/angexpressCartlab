@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-
+import { catchError, retry } from 'rxjs/operators'
+import { throwError } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -30,6 +31,9 @@ export class CartServiceService {
 
   getProductById(id): Observable<any[]> {
     return this.http.get<any[]>(this.base_url + id, httpOptions)
+    .pipe(
+      catchError(this.handleError)
+      )
      }
 
   postProduct(n1,n2,n3,n4): Observable<any[]> {
@@ -53,5 +57,10 @@ export class CartServiceService {
      }
     return this.http.put<any[]>(this.base_url + id, item, httpOptions)
    }
+
+   handleError(error: HttpErrorResponse){
+    // console.log("lalalalalalalala");
+    return throwError(error.error.text);
+    }
    
   }

@@ -22,6 +22,7 @@ export class CartModifyComponent implements OnInit {
 
   public posts = [];
   public prodId = [];
+  public err;
 
   constructor(private __CartServiceService: CartServiceService) { }
 
@@ -34,7 +35,10 @@ export class CartModifyComponent implements OnInit {
 
   getProductById(id) {
     this.__CartServiceService.getProductById(id).
-    subscribe(res => this.prodId = res)
+    subscribe((res) => {this.prodId = res}, 
+    (error) => this.err = error
+    )
+    
     // subscribe(res => console.log(res))
   }
 
